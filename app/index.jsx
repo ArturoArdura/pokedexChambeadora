@@ -20,9 +20,12 @@ export default function Index() {
         >
           <Text className="text-white font-bold text-lg">Comenzar</Text>
         </Pressable>
+        <Image source={require('../assets/pikachuRick.png')} className="absolute w-48 h-48 bottom-0 left-0 rotate-45" resizeMode="contain" />
     </View>
   )
 }
+
+
 
 // Componente animado
 const Imagefondo = () => {
