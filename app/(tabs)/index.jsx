@@ -22,7 +22,41 @@ export const TYPE_COLORS = {
   dark: '#705848',
   steel: '#B8B8D0',
   fairy: '#EE99AC',
+  amor: '#FF1493', // Color rosa fuerte para el tipo "amor"
+  'hermosa enojona sentimental': '#FF1493'
 }
+
+// ============ CARD PERSONALIZADA - BORRAR ESTA SECCIÓN COMPLETA PARA REMOVER ============
+const CUSTOM_CARD_ENABLED = false // Cambiar a false para ocultar la tarjeta de Mito
+
+const mitoCard = {
+  id: 999,
+  name: 'mito',
+  types: [{ type: { name: 'amor' } }],
+  abilities: [{ ability: { name: 'molestar a luciana' } }],
+  sprites: {
+    other: {
+      'official-artwork': {
+        front_default: null // Temporalmente null hasta que agregues la imagen
+      }
+    }
+  }
+}
+
+const reniCard = {
+  id: 998,
+  name: 'reni',
+  types: [{ type: { name: 'hermosa enojona sentimental' } }],
+  abilities: [{ ability: { name: 'Limpiar dientes y hacer feliz a arturo' } }],
+  sprites: {
+    other: {
+      'official-artwork': {
+        front_default: null // Temporalmente null hasta que agregues la imagen
+      }
+    }
+  }
+}
+// ============ FIN CARD PERSONALIZADA ============
 
 export default function Index() {
   const [pokemons, setPokemons] = useState([])
@@ -56,6 +90,8 @@ export default function Index() {
   const renderPokemonCard = ({ item }) => {
     const mainType = item.types[0].type.name
     const backgroundColor = TYPE_COLORS[mainType] || '#A8A878'
+    const isCustomCard = item.id === 999 // Identificador de la tarjeta personalizada
+    const isReniCard = item.id === 998 // Identificador de la tarjeta de Reni
 
     return (
       <View className="w-1/2 p-2">
@@ -95,11 +131,25 @@ export default function Index() {
 
           {/* Pokemon Image */}
           <View className="items-center">
-            <Image
-              source={{ uri: item.sprites.other['official-artwork'].front_default }}
-              className="w-24 h-24"
-              resizeMode="contain"
-            />
+            {isCustomCard ? (
+              <Image
+                source={require('../../assets/mito.jpeg')}
+                className="w-24 h-24"
+                resizeMode="contain"
+              />
+            ) : isReniCard ? (
+              <Image
+                source={require('../../assets/reni.jpeg')}
+                className="w-24 h-24"
+                resizeMode="contain"
+              />
+            ) : (
+              <Image
+                source={{ uri: item.sprites.versions?.['generation-v']?.['black-white']?.front_default || item.sprites.other['official-artwork'].front_default }}
+                className="w-28 h-28"
+                resizeMode="contain"
+              />
+            )}
           </View>
         </Pressable>
       </View>
@@ -126,7 +176,7 @@ export default function Index() {
         </View>
       ) : (
         <FlatList
-          data={pokemons}
+          data={CUSTOM_CARD_ENABLED ? [...pokemons, mitoCard, reniCard] : pokemons}
           renderItem={renderPokemonCard}
           keyExtractor={(item) => item.id.toString()}
           numColumns={2}

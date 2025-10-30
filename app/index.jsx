@@ -13,7 +13,7 @@ export default function Index() {
           style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}
         />
         <Imagefondo />
-        <Text className="text-white text-5xl font-bold">Pokédex</Text>
+        <Text className="text-white text-4xl font-bold">Pokedex by ArduraDev</Text>
         <Pressable 
           onPress={() => router.push('/(tabs)')}
           className="bg-red-500 px-8 py-4 rounded-full mt-8 active:bg-red-600"

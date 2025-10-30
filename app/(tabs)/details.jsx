@@ -14,8 +14,7 @@ export default function Details() {
   const backgroundColor = TYPE_COLORS[mainType] || '#A8A878'
   
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor }}>
-      <View className="flex-1 p-6">
+    <SafeAreaView className="flex-1 p-6" style={{ backgroundColor }}>
         <View className="flex-row justify-between items-center mb-4">
 
           <TouchableOpacity onPress={() => router.back()}>
@@ -32,7 +31,13 @@ export default function Details() {
           {/* Pokemon Image */}
           <View className="items-center mb-6">
             <Image
-              source={{ uri: pokemon.sprites.other['official-artwork'].front_default }}
+              source={
+                pokemon.name === "mito" 
+                  ? require('../../assets/mito2.jpeg') 
+                  : pokemon.name === "reni"
+                  ? require('../../assets/reni.jpeg')
+                  : { uri: pokemon.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_default || pokemon.sprites.other['official-artwork'].front_default }
+              }
               className="w-72 h-72" 
               resizeMode="contain"
             />
@@ -61,7 +66,15 @@ export default function Details() {
               </View>
             ))}
           </View>
-      </View>
+
+          {/* Logo de Pokemon */}
+          <View className="items-center mt-auto">
+            <Image
+              source={require('../../assets/logopoke.png')}
+              className="w-36 h-36"
+              resizeMode="contain"
+            />
+          </View>
     </SafeAreaView>
   )
 }
