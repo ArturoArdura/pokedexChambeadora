@@ -10,7 +10,7 @@ export default function TabsLayout() {
     <>
     <Tabs>
       <Tabs.Screen name="index" options={{ headerShown: false, tabBarLabel: 'Home', tabBarIcon: () => <MaterialIcons name="home" size={24} color="black" /> }} />
-      <Tabs.Screen name="userprofile" options={{ headerShown: false, tabBarLabel: 'User', tabBarIcon: () => <Image className="w-72 h-72" source={require('../../assets/pikachuRick.png')} /> }} />
+      <Tabs.Screen name="userprofile" options={{ headerShown: false, tabBarLabel: 'User', tabBarIcon: () => <Image className="w-10 h-10" source={require('../../assets/pikachuRick.png')} /> }} />
     </Tabs>
     <StatusBar style="light" />
   </>
