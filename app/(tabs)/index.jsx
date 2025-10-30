@@ -1,7 +1,8 @@
-import { View, Text, Image, FlatList, ActivityIndicator, Pressable } from 'react-native'
+import { View, Text, Image, FlatList, ActivityIndicator, Pressable, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { router } from 'expo-router'
+import { Imagefondo } from '../../components/imagefondo'
 
 export const TYPE_COLORS = {
   normal: '#A8A878',
@@ -95,7 +96,7 @@ export default function Index() {
 
     return (
       <View className="w-1/2 p-2">
-        <Pressable 
+        <TouchableOpacity 
           onPress={() => router.push({pathname:'/details',params:{item: JSON.stringify(item)}})}
           className="rounded-2xl p-4 shadow-lg"
           style={{ backgroundColor }}
@@ -151,7 +152,7 @@ export default function Index() {
               />
             )}
           </View>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -188,12 +189,3 @@ export default function Index() {
   )
 }
 
-// Estilos
-const Imagefondo = () => {
-  return(
-    <Image 
-      source={require('../../assets/pokebola.png')} 
-      className="absolute w-72 h-72 top-3 -right-7 opacity-10" 
-    />
-  )
-}

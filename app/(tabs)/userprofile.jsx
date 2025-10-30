@@ -2,33 +2,21 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Imagefondo } from '../../components/imagefondo'
 
 
 export default function User() {
   return (
     <SafeAreaView className="flex-1 bg-white">
+          <Imagefondo />
+
       {/* Header */}
-      <LinearGradient
-        colors={['#DC2626', '#EA580C', '#F97316']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        className="pt-8 pb-12 px-6 rounded-b-3xl shadow-lg"
-      >
-        <Text className="text-white text-3xl font-bold mb-2">Mi Perfil</Text>
-        <Text className="text-orange-100">Entrenador Pokémon</Text>
-      </LinearGradient>
+      
 
       {/* Profile Card */}
-      <View className="mx-6 -mt-8 bg-gray-800 rounded-2xl shadow-lg p-6">
+      <View className="mx-6 bg-gray-800 rounded-2xl shadow-lg p-6 ">
         {/* Avatar */}
-        <View className="items-center mb-6">
-          <LinearGradient
-            colors={['#F97316', '#DC2626']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            className="rounded-full p-1 mb-4"
-          >
+        <View className="items-start mb-6 bg-gray-800 flex-row">
             <View className="bg-gray-900 rounded-full p-2">
               <Image
                 source={{ uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png' }}
@@ -36,9 +24,11 @@ export default function User() {
                 resizeMode="contain"
               />
             </View>
-          </LinearGradient>
-          <Text className="text-white text-2xl font-bold">Maestro Charizard</Text>
-          <Text className="text-orange-300 text-sm">usuario@pokedex.com</Text>
+            <View className="ml-4 justify-center items-center pt-6">
+              <Text className="text-white text-xl font-bold">Maestro Charizard</Text>
+              <Text className="text-orange-300 text-sm">usuario@pokedex.com</Text>
+            </View>
+          
         </View>
 
         {/* Stats */}
@@ -76,6 +66,14 @@ export default function User() {
           value="Pueblo Paleta, Kanto" 
         />
       </View>
+{/* Logo de Pokemon */}
+          <View className="items-center mt-auto">
+            <Image
+              source={require('../../assets/logopoke.png')}
+              className="w-36 h-36"
+              resizeMode="contain"
+            />
+          </View>
     </SafeAreaView>
   )
 }
@@ -84,15 +82,9 @@ export default function User() {
 const InfoCard = ({ icon, title, value }) => {
   return (
     <View className="bg-gray-800 rounded-xl p-4 mb-3 shadow-sm flex-row items-center">
-      <LinearGradient
-        colors={['#F97316', '#DC2626']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        className="rounded-full p-3 mr-4"
-      >
-        <AntDesign name={icon} size={20} color="#fff" />
-      </LinearGradient>
-      <View className="flex-1">
+      <AntDesign name={icon} size={20} color="#fff" />
+      
+      <View className="flex-1 ml-4">
         <Text className="text-gray-400 text-xs mb-1">{title}</Text>
         <Text className="text-white font-semibold">{value}</Text>
       </View>
