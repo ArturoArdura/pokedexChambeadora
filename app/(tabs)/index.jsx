@@ -1,8 +1,9 @@
-import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native'
+import { View, Text, Image, FlatList, ActivityIndicator, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { router } from 'expo-router'
 
-const TYPE_COLORS = {
+export const TYPE_COLORS = {
   normal: '#A8A878',
   fire: '#F08030',
   water: '#6890F0',
@@ -58,7 +59,8 @@ export default function Index() {
 
     return (
       <View className="w-1/2 p-2">
-        <View 
+        <Pressable 
+          onPress={() => router.push({pathname:'/details',params:{item: JSON.stringify(item)}})}
           className="rounded-2xl p-4 shadow-lg"
           style={{ backgroundColor }}
         >
@@ -86,6 +88,11 @@ export default function Index() {
             ))}
           </View>
 
+          {/* Pokemon Abilities, o sea chamba */}
+          <Text className="text-white font-bold text-md mb-2">
+            Chambea de: {item.abilities.map(ability => ability.ability.name).join(', ')}
+          </Text>
+
           {/* Pokemon Image */}
           <View className="items-center">
             <Image
@@ -94,19 +101,19 @@ export default function Index() {
               resizeMode="contain"
             />
           </View>
-        </View>
+        </Pressable>
       </View>
     )
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-black">
+    <SafeAreaView className="flex-1 bg-white">
       <Imagefondo />
       
       {/* Header */}
       <View className="px-6 pt-4 pb-6 z-10">
-        <Text className="text-white text-4xl font-bold">Pokédex</Text>
-        <Text className="text-gray-400 text-sm mt-1">
+        <Text className="text-black text-4xl font-bold">Pokédex con React Native</Text>
+        <Text className="text-gray-800 text-sm mt-1">
           Descubre todos los Pokémon
         </Text>
       </View>
@@ -115,7 +122,7 @@ export default function Index() {
       {loading ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#fff" />
-          <Text className="text-white mt-4">Cargando Pokémon...</Text>
+          <Text className="text-black mt-4">Cargando Pokémon...</Text>
         </View>
       ) : (
         <FlatList

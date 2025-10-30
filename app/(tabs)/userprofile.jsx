@@ -1,42 +1,59 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 export default function User() {
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Header */}
-      <View className="bg-blue-600 pt-8 pb-12 px-6 rounded-b-3xl shadow-lg">
+      <LinearGradient
+        colors={['#DC2626', '#EA580C', '#F97316']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        className="pt-8 pb-12 px-6 rounded-b-3xl shadow-lg"
+      >
         <Text className="text-white text-3xl font-bold mb-2">Mi Perfil</Text>
-        <Text className="text-blue-100">Entrenador Pokémon</Text>
-      </View>
+        <Text className="text-orange-100">Entrenador Pokémon</Text>
+      </LinearGradient>
 
       {/* Profile Card */}
-      <View className="mx-6 -mt-8 bg-white rounded-2xl shadow-lg p-6">
+      <View className="mx-6 -mt-8 bg-gray-800 rounded-2xl shadow-lg p-6">
         {/* Avatar */}
         <View className="items-center mb-6">
-          <View className="bg-blue-100 rounded-full p-6 mb-4">
-            <AntDesign name="user" size={64} color="#2563eb" />
-          </View>
-          <Text className="text-gray-800 text-2xl font-bold">Usuario Pokémon</Text>
-          <Text className="text-gray-500 text-sm">usuario@pokedex.com</Text>
+          <LinearGradient
+            colors={['#F97316', '#DC2626']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            className="rounded-full p-1 mb-4"
+          >
+            <View className="bg-gray-900 rounded-full p-2">
+              <Image
+                source={{ uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png' }}
+                className="w-32 h-32"
+                resizeMode="contain"
+              />
+            </View>
+          </LinearGradient>
+          <Text className="text-white text-2xl font-bold">Maestro Charizard</Text>
+          <Text className="text-orange-300 text-sm">usuario@pokedex.com</Text>
         </View>
 
         {/* Stats */}
-        <View className="flex-row justify-around py-4 border-t border-gray-200">
+        <View className="flex-row justify-around py-4 border-t border-gray-700">
           <View className="items-center">
-            <Text className="text-blue-600 text-2xl font-bold">150</Text>
-            <Text className="text-gray-500 text-xs">Capturados</Text>
+            <Text className="text-orange-500 text-2xl font-bold">150</Text>
+            <Text className="text-gray-400 text-xs">Capturados</Text>
           </View>
           <View className="items-center">
-            <Text className="text-blue-600 text-2xl font-bold">42</Text>
-            <Text className="text-gray-500 text-xs">Favoritos</Text>
+            <Text className="text-orange-500 text-2xl font-bold">42</Text>
+            <Text className="text-gray-400 text-xs">Favoritos</Text>
           </View>
           <View className="items-center">
-            <Text className="text-blue-600 text-2xl font-bold">89</Text>
-            <Text className="text-gray-500 text-xs">Vistos</Text>
+            <Text className="text-orange-500 text-2xl font-bold">89</Text>
+            <Text className="text-gray-400 text-xs">Vistos</Text>
           </View>
         </View>
       </View>
@@ -66,13 +83,18 @@ export default function User() {
 // Info Card Component
 const InfoCard = ({ icon, title, value }) => {
   return (
-    <View className="bg-white rounded-xl p-4 mb-3 shadow-sm flex-row items-center">
-      <View className="bg-blue-50 rounded-full p-3 mr-4">
-        <AntDesign name={icon} size={20} color="#2563eb" />
-      </View>
+    <View className="bg-gray-800 rounded-xl p-4 mb-3 shadow-sm flex-row items-center">
+      <LinearGradient
+        colors={['#F97316', '#DC2626']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        className="rounded-full p-3 mr-4"
+      >
+        <AntDesign name={icon} size={20} color="#fff" />
+      </LinearGradient>
       <View className="flex-1">
-        <Text className="text-gray-500 text-xs mb-1">{title}</Text>
-        <Text className="text-gray-800 font-semibold">{value}</Text>
+        <Text className="text-gray-400 text-xs mb-1">{title}</Text>
+        <Text className="text-white font-semibold">{value}</Text>
       </View>
     </View>
   )
